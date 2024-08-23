@@ -251,7 +251,7 @@ export default class TextareaInput {
     }
     // Find the part of the input that is actually new
     let same = 0, l = Math.min(prevInput.length, text.length)
-    while (same < l && prevInput.charCodeAt(same) == text.charCodeAt(same)) ++same
+    while (same < l && prevInput.codePointAt(same) == text.codePointAt(same)) ++same
 
     runInOp(cm, () => {
       applyTextInput(cm, text.slice(same), prevInput.length - same,
