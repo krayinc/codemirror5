@@ -336,7 +336,7 @@
       var newTop = top + startScroll.top - curScroll.top;
       var point = newTop - (parentWindow.pageYOffset || (ownerDocument.documentElement || ownerDocument.body).scrollTop);
       if (!below) point += hints.offsetHeight;
-      if (point <= editor.top || point >= editor.bottom) return completion.close();
+      if (completion.options.closeIfOutside && (point <= editor.top || point >= editor.bottom)) return completion.close();
       hints.style.top = newTop + "px";
       hints.style.left = (left + startScroll.left - curScroll.left) + "px";
     });
@@ -523,6 +523,7 @@
     extraKeys: null,
     paddingForScrollbar: true,
     moveOnOverlap: true,
+    closeIfOutside: true,
   };
 
   CodeMirror.defineOption("hintOptions", null);
